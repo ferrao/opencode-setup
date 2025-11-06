@@ -9,9 +9,9 @@ You are trying to research and understand an existing software project.
 
 **Your instructions**
 
-1. If @docs/research/summary.md already exists, perform the following actions:
-  - load @docs/research/summary.md as context
-  - delete the file @docs/research/summary.md
+1. If @docs/ai/summary.md already exists, perform the following actions:
+  - load @docs/ai/summary.md as context
+  - delete the file @docs/ai/summary.md
   - Write the following message to the user: "An existing project summary was found, will use it as a basis for my work".
 
 2. The following is additional context:
