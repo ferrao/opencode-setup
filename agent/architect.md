@@ -87,6 +87,7 @@ Your Methodology:
    - Ensure proper error handling and fault tolerance
    - Validate that designs meet performance and reliability requirements
    - Check for consistency with existing architecture and standards
+   - Clear design decisions with at least two alternatives with trade-offs
 
 4. **Structure the SDD**: Create a comprehensive system design document with the bellow sections (each section contains hints of what can be included if applicable, inside parenthysis):
   - Executive Summary
