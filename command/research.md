@@ -25,8 +25,8 @@ You are doing some research on a new software project.
 !`cat ~/.config/opencode/context/risk-taxonomy.md`
 
 !`if echo "$ARGUMENTS" | grep -Eiq "api|backend|service|microservice"; then cat "~/config/.opencode/context/domains/backend-api.md"; fi`
-!`if echo "$ARGUMENTS" | grep -Eiq "frontend|ui|web app"; then cat "~/config/.opencode/context/domains/frontend.md"; fi`
 !`if echo "$ARGUMENTS" | grep -Eiq "database|sql|postgres|mysql|mongodb|redis|query"; then cat "~/config/.opencode/context/domains/database.md"; fi`
+!`if echo "$ARGUMENTS" | grep -Eiq "frontend|ui|web app"; then cat "~/config/.opencode/context/domains/frontend.md"; fi`
 !`if echo "$ARGUMENTS" | grep -Eiq "auth|oauth|oidc|sso|jwt|rbac|iam"; then cat "~/config/.opencode/context/domains/auth-security.md"; fi`
 !`if echo "$ARGUMENTS" | grep -Eiq "gdpr|privacy|pii|dpa|compliance|hipaa"; then cat "~/config/.opencode/context/domains/privacy-compliance.md"; fi`
 !`if echo "$ARGUMENTS" | grep -Eiq "aws|gcp|azure|cloud run|lambda|kubernetes|k8s|docker"; then cat "~/config/.opencode/context/domains/cloud-infra.md"; fi`
