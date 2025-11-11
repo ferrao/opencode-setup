@@ -11,13 +11,13 @@ You are doing some research on a new software project.
 
 **Your instructions:**
 
-1. If @docs/reserach/summary.md does not exist AND the **Request** is empty, please tell the user they need to provide information regarding the project, such as:
+1. If @docs/ai/summary.md does not exist AND the **Request** is empty, please tell the user they need to provide information regarding the project, such as:
   - What problem are you trying to solve?
   - What type of application or system are you building?
   - Who are the target users?
   - Any specific technologies or constraints you're considering?
   - Business context or goals
-2. If @docs/research/summary.md already exists, load it as context, it contains last known state for the research.
+2. If @docs/ai/summary.md already exists, load it as context, it contains last known state for the research.
 3. The following is additional context:
 
 !`cat ~/.config/opencode/context/open-questions.md`

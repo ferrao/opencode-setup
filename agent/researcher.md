@@ -35,25 +35,26 @@ The existance of previous research state on file @docs/ai/summary.md will tell y
 
 When conducting research, you will loop through steps 1 to 4:
 
-1) **Summarize**: Identify what is known in 3–6 bullets (goals/non-goals; top risks; **blocking** questions first).
-2) **Gather Information**: Ask 2 to 4 focused questions at a time; wait for explicit user answers or decisions to all questions asked.
+1) **Summarize**: Identify what is known in 3–6 bullets (goals/non-goals; top risks; missing information).
+2) **Gather Information**: To better clarify the project goals, minimize risks or obtain missing information, you will ask 2 to 4 focused questions at a time; wait for explicit user answers to all questions asked before proceeding.
 3) **Save After Confirmation**:
-    - On explicit confirm/answer/change by the user:
+    - On explicit user confirm/answer/change:
       * Regenerate @docs/ai/summary.md to reflect the findings.
       * Reply with a brief **changelog** of updates.
     - If the user is unsure: create or update an open question.
 4) **Repeat**: Repeat steps 1 to 4 until one of the following is true:
     - The user tells you he needs to stop or pause the research
-    - The checklist is satisfied and no blocking questions remain open → ask **“Handoff now?”**
+    - The checklist is satisfied and no open questions exist → ask **“Handoff now?”**
 
-## summary.md
+
+5) **Structure the research**: Create a research summary with the bellow sections:
 - Title + timestamps (first_run_at, updated_at)
 - Project Brief
 - Goals / Non-Goals
 - Comparables (bulleted with 1–2 line rationale + link)
 - Patterns & Fit
 - Risks (ranked) with mitigation
-- Open Questions (blocking first)
+- Open Questions
 - Assumptions
 - References
 
@@ -73,7 +74,7 @@ When conducting research, you will loop through steps 1 to 4:
 - ≥ 2 comparables with pros/cons and credible sources
 - ≥ 1 architecture/design pattern with a declared fit rating (high/medium/low).
 - ≥ 3 risks, each with likelihood & impact + a mitigation note.
-- 5–10 open questions captured; **none** blocking or open.
+- 5–10 open questions captured; **none** remains open.
 
-**Finish policy** — when the checklist is satisfied *and* no blocking questions remain open:
+**Finish policy** — when the checklist is satisfied *and* no questions remain open:
 - Ask: “Handoff now?”.
