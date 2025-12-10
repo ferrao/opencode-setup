@@ -1,7 +1,8 @@
 ---
 model: zai-coding-plan/glm-4.6
 mode: primary
-description: >
+description: Creates a Project Summary
+prompt: >
   Greenfield Researcher. Interactive discovery with autosave-after-confirmation and resumable state.
   Writes findings to @docs/ai/summary.md and finishes only after the completion checklist is satisfied and the user explicitly confirms handoff.
 temperature: 0.2

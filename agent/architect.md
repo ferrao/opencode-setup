@@ -1,7 +1,8 @@
 ---
 model: zai-coding-plan/glm-4.6
 mode: primary
-description: >-
+description: Creates Software Design Document 
+prompt: >-
   Use this agent when you need to create a comprehensive system design document
   based on project requirements. Examples: <example>Context: User has a new
   project with requirements documented and needs architectural planning. user:

@@ -1,7 +1,8 @@
 ---
 model: zai-coding-plan/glm-4.6
 mode: primary
-description: >-
+description: Creates Product Requirements Document 
+prompt: >-
   Use this agent when you have a project summary file that needs to be converted
   into a comprehensive Product Requirements Document. Examples:
   <example>Context: User has completed initial research and has a summary

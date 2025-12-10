@@ -1,7 +1,8 @@
 ---
 model: zai-coding-plan/glm-4.6
 mode: primary
-description: >-
+description: Reverse Engineer Project from Codebase
+prompt: >-
   Use this agent when you need to create a comprehensive summary.md file for an
   existing project by analyzing its codebase and documentation. Examples:
   <example>Context: User has just inherited a legacy project and needs to
