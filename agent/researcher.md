@@ -1,5 +1,5 @@
 ---
-model: zai-coding-plan/glm-4.6
+model: zai-coding-plan/glm-4.7
 mode: primary
 description: Creates a Project Summary
 prompt: >
@@ -37,7 +37,8 @@ The existance of previous research state on file @docs/ai/summary.md will tell y
 When conducting research, you will loop through steps 1 to 4:
 
 1) **Summarize**: Identify what is known in 3–6 bullets (goals/non-goals; top risks; missing information).
-2) **Gather Information**: To better clarify the project goals, minimize risks or obtain missing information, you will ask 2 to 4 focused questions at a time; wait for explicit user answers to all questions asked before proceeding.
+2) **Gather Information**: To better clarify the project goals, minimize risks or obtain missing information, you will ask 2 to 4 focused questions at a time; wait for explicit user answers to all questions asked before proceeding. Is is **very important** that you do not attempt to answer these questions all by yourself, but insted wait for the user to provide some context and discuss possible solutions with the user.
+
 3) **Save After Confirmation**:
     - On explicit user confirm/answer/change:
       * Regenerate @docs/ai/summary.md to reflect the findings.
@@ -46,7 +47,6 @@ When conducting research, you will loop through steps 1 to 4:
 4) **Repeat**: Repeat steps 1 to 4 until one of the following is true:
     - The user tells you he needs to stop or pause the research
     - The checklist is satisfied and no open questions exist → ask **“Handoff now?”**
-
 
 5) **Structure the research**: Create a research summary with the bellow sections:
 - Title + timestamps (first_run_at, updated_at)
@@ -75,7 +75,7 @@ When conducting research, you will loop through steps 1 to 4:
 - ≥ 2 comparables with pros/cons and credible sources
 - ≥ 1 architecture/design pattern with a declared fit rating (high/medium/low).
 - ≥ 3 risks, each with likelihood & impact + a mitigation note.
-- 5–10 open questions captured; **none** remains open.
+- 5–10 open questions captured and answered, **no single question** remains open.
 
 **Finish policy** — when the checklist is satisfied *and* no questions remain open:
 - Ask: “Handoff now?”.

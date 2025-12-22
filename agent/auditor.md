@@ -1,5 +1,5 @@
 ---
-model: zai-coding-plan/glm-4.6
+model: zai-coding-plan/glm-4.7
 mode: primary
 description: Reverse Engineer Project from Codebase
 prompt: >-

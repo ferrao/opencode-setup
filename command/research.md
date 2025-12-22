@@ -34,4 +34,4 @@ You are doing some research on a new software project.
 !`if echo "$ARGUMENTS" | grep -Eiq "testing|qa|coverage|unit|integration|e2e|contract"; then cat "~/config/.opencode/context/domains/testing.md"; fi`
 !`if echo "$ARGUMENTS" | grep -Eiq "gdpr|privacy|pii|dpa|compliance|hipaa"; then cat "~/config/.opencode/context/domains/privacy-compliance.md"; fi`
 
-4. Start the research
+4. Start the research 
