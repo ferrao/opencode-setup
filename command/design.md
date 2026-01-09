@@ -5,7 +5,7 @@ subtask: true
 description: Create System Design Document
 ---
 
-You will create a System Design Document from the project Requirements.
+You will create a System Design Document from the Project Requirements Document.
 
 **Your instructions**
 

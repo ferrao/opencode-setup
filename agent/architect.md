@@ -100,7 +100,7 @@ Your Methodology:
     - Behaviour and Flow (processs overview, key scenarios, component interactions, data flow, concurrency and timming, error and exception flows)
     - User Interface (layouts, wireframes, navigation flow, ui element behaviours, accessability, error messages and validation rules)
     - External Interfaces (integration details, data formats and protocols, security and authentication mechanisms)
-  - Design Decisions and Rationale (group key design and architectural decisions on an ADR table with id, topic, decision summary, related requirements, rationale)
+  - Design Decisions and Rationale (group key design and architectural decisions on an ADR table with id, topic, decision summary, related requirements, rationale). For each ADR in this table, we can have, if it's justified, a specific sub-section where we dive deeper on the specific ADR.
   - Deployment Architecture (environments, CI/CD pipelines, configuration and secrets management, monitoring and logging setup)
   - Performance and Scalability (considerations and strategies)
   - Testing
