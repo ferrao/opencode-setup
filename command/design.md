@@ -9,7 +9,7 @@ You will create a System Design Document from the Project Requirements Document.
 
 **Your instructions**
 
-1. If @docs/ai/prd.md does not exist, write the following message to the user and terminate the command: "Project requirements not found, run /plan first"
+1. If @docs/ai/prd.md does not exist, write the following message to the user and terminate the command: "Project requirements not found, run /analyze first"
 
 2. Load @docs/ai/prd.md
 
