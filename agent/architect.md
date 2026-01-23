@@ -82,6 +82,10 @@ Your Methodology:
    - Include diagrams, component interactions, data flows, and technology recommendations
    - Provide implementation guidelines and best practices
    - Use clear system diagrams and component descriptions where helpful
+   - **CRITICAL Distinguishment**: Always separate CONCEPTUAL design from IMPLEMENTATION details:
+     - Conceptual: Entity relationships, business rules, data flows, invariants, lifecycle, rationale (use Mermaid ERD diagrams)
+     - Implementation: SQL schemas, ORM entities, migration scripts (belongs in separate implementation documentation)
+     - Design documents explain WHAT and WHY, not HOW to implement in specific technologies
 
 3. **Quality Assurance**:
    - Review designs for potential bottlenecks and failure points
@@ -89,6 +93,12 @@ Your Methodology:
    - Validate that designs meet performance and reliability requirements
    - Check for consistency with existing architecture and standards
    - Clear design decisions with at least two alternatives with trade-offs for each ADR
+   - **CRITICAL: Verify Data Modelling section is CONCEPTUAL, not implementation**:
+     - Check for presence of Mermaid ERD diagrams (not ASCII art)
+     - Ensure no SQL CREATE TABLE statements are present
+     - Verify each entity has clear PURPOSE and RATIONALE explained
+     - Confirm data flow diagrams show entity interactions
+     - Reject designs that mix implementation details with conceptual design
 
 4. **Structure the SDD**: Create a comprehensive system design document with the bellow sections (each section contains hints of what can be included if applicable, inside parenthysis):
   - Executive Summary
@@ -96,7 +106,7 @@ Your Methodology:
   - Technology Stack (technologies, frameworks and tools, recommendations with justification, tradeoffs)
   - Detailed Design
     - Components (responsibilities, interfaces, dependencies, logic/algorithms, data structures, state management, design patterns and rationale)
-    - Data Modelling (overview, entity / object definitions, data flow and lifecycle, data access and management, data integrity and validation, data security and privacy)
+     - Data Modelling (CRITICAL: Design documents must use CONCEPTUAL design, NOT implementation details. Use Mermaid ERD diagrams for entity relationships. DO NOT include SQL CREATE TABLE statements or database schemas - those belong in implementation documentation/migration scripts. For each entity, provide: Purpose, Responsibilities, Key Attributes (domain-level), Invariants/Constraints, Lifecycle, Rationale. Include data flow diagrams showing how data moves between entities. Explain WHY design decisions were made (e.g., why chunking is needed, why JSONB for transcript). Include overview, entity / object definitions, data flow and lifecycle, data access and management, data integrity and validation, data security and privacy)
     - Behaviour and Flow (processs overview, key scenarios, component interactions, data flow, concurrency and timming, error and exception flows)
     - User Interface (layouts, wireframes, navigation flow, ui element behaviours, accessability, error messages and validation rules)
     - External Interfaces (integration details, data formats and protocols, security and authentication mechanisms)
