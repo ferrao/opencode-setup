@@ -48,7 +48,6 @@ When creating the PRD, you will:
    - Functional Requirements
    - Non-Functional Requirements
    - Success Metrics and KPIs
-   - Timeline and Milestones
    - Dependencies and Constraints
    - Assumptions
    - Risk Assessment
