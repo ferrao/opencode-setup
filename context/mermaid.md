@@ -718,6 +718,186 @@ When creating Gantt charts for project plans (especially for single-developer or
 
    Burndown charts show historical data only. Don't include forecast lines or speculative data points.
 
+## ERD (Entity Relationship Diagram) Syntax
+
+### Critical Updates (January 2026)
+
+This section added to document lessons learned from creating Mermaid ERD diagrams for System Design Documents (SDDs).
+
+### ERD Diagram Common Mistakes
+
+#### 1. Using `enum` Keyword
+
+❌ **WRONG:**
+```mermaid
+erDiagram
+    Role {
+        USER
+        ASSISTANT
+        ESCALATION_CONTEXT
+    }
+```
+
+✅ **CORRECT:**
+```mermaid
+erDiagram
+    Role {
+        string value
+        USER
+        ASSISTANT
+        ESCALATION_CONTEXT
+    }
+```
+
+**Why**: Mermaid ERD does not support the `enum` keyword for defining value lists. Every entity definition must have at least one attribute.
+
+**Fix**: Always add at least one attribute (e.g., `string value`) before listing enum values. Document the actual enum values in the entity definitions section below the ERD, not as part of the diagram itself.
+
+#### 2. Empty Entities (No Attributes)
+
+❌ **WRONG:**
+```mermaid
+erDiagram
+    ClosureStatus {
+        CLOSED
+        OPEN
+    }
+```
+
+✅ **CORRECT:**
+```mermaid
+erDiagram
+    ClosureStatus {
+        string value
+        CLOSED
+        OPEN
+    }
+```
+
+**Why**: Mermaid ERD entities without attributes cause parse errors. Every entity must define at least one attribute.
+
+**Fix**: Add a placeholder attribute like `string value` to all value-list entities.
+
+#### 3. Referencing Enum Entity Names
+
+❌ **WRONG:**
+```mermaid
+erDiagram
+    ChatMessage {
+        Role role
+        string content
+    }
+```
+
+**Where `Role` is defined as a separate enum entity above.**
+
+✅ **CORRECT:**
+```mermaid
+erDiagram
+    ChatMessage {
+        string role
+        string content
+    }
+```
+
+**Why**: Referencing other enum entities from within attribute definitions causes issues.
+
+**Fix**: Use basic types directly (e.g., `string role`, `string closureStatus`) in entity definitions. Document what values are allowed in the detailed entity definitions below the ERD.
+
+---
+
+## ERD Diagram Syntax
+
+### Basic Structure
+
+```mermaid
+erDiagram
+    EntityA ||--o{ EntityB : relationship_label
+    EntityA {
+        string attributeName PK
+        string attributeName
+    }
+    EntityB {
+        string attributeName FK
+        string attributeName
+    }
+```
+
+### Relationship Cardinality
+
+- `||--||` = One-to-One (1:1)
+- `||--o{` = One-to-Many (1:N)
+- `}o--||` = Many-to-One (N:1)
+- `}o--o{` = Many-to-Many (N:M)
+- `||--o|` = One-to-Zero-or-One (1:0..1)
+
+### Attribute Syntax
+
+- `string attributeName` = String type
+- `integer attributeName` = Integer type
+- `timestamp attributeName` = Timestamp type
+- `boolean attributeName` = Boolean type
+- `list~Type~ attributeName` = List of Type
+- `PK` = Primary key (append to attribute name)
+- `FK` = Foreign key (append to attribute name)
+- `UK` = Unique key (append to attribute name)
+
+---
+
+## ERD Diagram Best Practices
+
+### 1. Document Enums Separately
+
+For value lists/enums (Role, ClosureStatus, etc.):
+
+**In ERD Diagram:**
+- Define entity with at least one attribute
+- Use basic type (e.g., `string role`)
+- Do NOT use `enum` keyword
+
+**In Entity Definitions Section:**
+- Document allowed values
+- Explain what each value means
+- Provide examples
+
+### 2. Keep ERD Focused on Relationships
+
+The ERD diagram should focus on:
+- Entity relationships (cardinality, direction)
+- Key attributes (PK, FK, important types)
+- Clear, readable structure
+
+Avoid:
+- Too many attributes in ERD (save detailed attributes for entity definitions section)
+- Complex constraints (these go in implementation or entity definitions)
+- Enum definitions in ERD (document below)
+
+### 3. Validate Before Documenting
+
+Before saving, check:
+
+1. **No `enum` keyword** in ERD definitions
+2. **Every entity has at least one attribute** (even value lists)
+3. **Basic types used** instead of enum entity references
+4. **Relationships use correct cardinality syntax**
+5. **Entities are properly connected** (no orphan entities)
+
+### 4. Use Entity Definitions Section
+
+The ERD diagram shows relationships. The entity definitions section explains:
+
+- **Purpose**: Why this entity exists
+- **Why This Entity Exists**: Rationale
+- **Responsibilities**: What data it captures
+- **Key Attributes**: Domain-level attributes
+- **Invariants/Constraints**: Business rules
+- **Lifecycle**: How entity changes over time
+- **Rationale**: Design rationale
+
+For enums, document the allowed values in the entity definitions section, not in the ERD.
+
+---
+
 ## Common Project Management Visualizations
 
 ### Release Planning

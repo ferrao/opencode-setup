@@ -16,6 +16,7 @@ You will create a System Design Document from the Project Requirements Document.
 3. The following is additional context:
 
 !`cat ~/.config/opencode/context/patterns-catalog.md`
+!`cat ~/.config/opencode/context/mermaid.md`
 
 !`if cat @docs/ai/prd.md| grep -Eiq "api|backend|service|microservice"; then cat "~/config/.opencode/context/domains/backend-api.md"; fi`
 !`if cat @docs/ai/prd.md| grep -Eiq "frontend|ui|web app"; then cat "~/config/.opencode/context/domains/frontend.md"; fi`
