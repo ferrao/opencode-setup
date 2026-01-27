@@ -3,6 +3,8 @@
 Reference for creating project plan visualizations using Mermaid diagrams.
 Focus on Gantt charts, timelines, and burndown/burnup charts commonly used in project management.
 
+Official documentation: https://mermaid.ai/open-source/intro/index.html
+
 ## Critical Updates (January 2026)
 
 This documentation has been updated to reflect lessons learned from creating real project plans. Key changes:
@@ -812,16 +814,194 @@ erDiagram
 
 ```mermaid
 erDiagram
-    EntityA ||--o{ EntityB : relationship_label
-    EntityA {
-        string attributeName PK
-        string attributeName
-    }
-    EntityB {
-        string attributeName FK
-        string attributeName
-    }
+     EntityA ||--o{ EntityB : relationship_label
+     EntityA {
+         string attributeName PK
+         string attributeName
+     }
+     EntityB {
+         string attributeName FK
+         string attributeName
+     }
 ```
+
+---
+
+## Flowchart Syntax (for System Design Documents)
+
+### Critical Updates (January 2026)
+
+Added flowchart syntax guidance based on parsing errors encountered in Project Lumi System Design Document (SDD).
+
+### Flowchart Common Mistakes
+
+#### 1. Multi-Line Node Definitions
+
+Mermaid parsers can fail when node labels span multiple lines without proper syntax.
+
+**Example of broken syntax (from Project Lumi SDD):**
+```mermaid
+flowchart TB
+  alb[AWS ALB
+    - TLS termination
+    - HTTP→HTTPS redirect
+    - Health checks] --> app[Application]
+```
+
+**Solutions:**
+
+**Option 1: Use single-line node labels with `<br/>` for line breaks:**
+```mermaid
+flowchart TB
+  alb["AWS ALB<br/>- TLS termination<br/>- HTTP→HTTPS redirect<br/>- Health checks"] --> app[Application]
+```
+
+**Option 2: Use subgraphs for multi-node grouping:**
+```mermaid
+flowchart TB
+  subgraph Infrastructure
+    alb[AWS ALB]
+    app[Application]
+    db[(Database)]
+  end
+
+  alb --> app
+  alb --> db
+```
+
+**Option 3: Use separate description nodes connected with dotted lines:**
+```mermaid
+flowchart TB
+  alb[AWS ALB]
+  features[Feature Notes:<br/>- item 1<br/>- item 2]
+  alb -.-> features
+```
+
+#### 2. Node Labels with Special Characters
+
+Node labels containing parentheses `()`, brackets `[]`, dashes `-`, or special characters can cause parse errors.
+
+**Example of broken syntax:**
+```mermaid
+flowchart LR
+  employee["Employee (Google Workspace user)"] -->|HTTPS| lumi["Lumi Web App"]
+```
+
+**Solution: Use double quotes around labels with special characters:**
+```mermaid
+flowchart LR
+  employee["Employee (Google Workspace user)"] -->|HTTPS| lumi["Lumi Web App"]
+```
+
+**Best Practice:** Always use `["Node Label"]` when label contains:
+- Parentheses `()`
+- Brackets `[]`
+- Special characters like `-`, `*`, `/`
+- Multi-line text
+
+#### 3. Arrow Labels with Dashes or Asterisks
+
+**Example of broken syntax (from Project Lumi SDD):**
+```mermaid
+flowchart LR
+  alb[AWS ALB<br/>- HTTPS Termination<br/>- HTTP→HTTPS Redirect<br/>- DDoS (AWS Shield)<br/>- WAF (Bot Protection)<br/>- Health Checks]
+```
+
+**Solution: Use text for labels, avoid special characters in feature lists:**
+```mermaid
+flowchart LR
+  alb[AWS ALB<br/>HTTPS Termination<br/>HTTP to HTTPS Redirect<br/>DDoS AWS Shield<br/>WAF Bot Protection<br/>Health Checks]
+```
+
+**Best Practice:** Keep node labels simple. Move detailed descriptions to surrounding text in the document section.
+
+#### 1. Multi-Line Node Definitions
+
+Mermaid parsers can fail when node labels span multiple lines without proper syntax.
+
+**Example of broken syntax:**
+```mermaid
+flowchart TB
+  alb[AWS ALB
+    - TLS termination
+    - HTTP→HTTPS redirect
+    - Health checks] --> app[Application]
+```
+
+**Solutions:**
+
+**Option 1: Use single-line node labels with `<br/>` for line breaks:**
+```mermaid
+flowchart TB
+  alb["AWS ALB<br/>- TLS termination<br/>- HTTP→HTTPS redirect<br/>- Health checks"] --> app[Application]
+```
+
+**Option 2: Use subgraphs for multi-node grouping:**
+```mermaid
+flowchart TB
+  subgraph Infrastructure
+    alb[AWS ALB]
+    app[Application]
+    db[(Database)]
+  end
+
+  app --> db
+  alb --> app
+```
+
+**Option 3: Use separate description nodes connected with dotted lines:**
+```mermaid
+flowchart TB
+  alb[AWS ALB]
+  features[Feature Notes:<br/>- TLS termination<br/>- HTTP→HTTPS redirect<br/>- Health checks]
+  alb -.-> features
+```
+
+#### 2. Node Labels with Special Characters
+
+Node labels containing parentheses `()`, brackets `[]`, or other special characters can cause parse errors.
+
+**Example of broken syntax:**
+```mermaid
+flowchart LR
+  employee[Employee (Google Workspace user)] -->|HTTPS| lumi[Lumi Web App]
+```
+
+**Solution: Use double quotes around labels with special characters:**
+```mermaid
+flowchart LR
+  employee["Employee (Google Workspace user)"] -->|HTTPS| lumi["Lumi Web App"]
+```
+
+**Best Practice:** Always use `["Node Label"]` when label contains:
+- Parentheses `()`
+- Brackets `[]`
+- Special characters like `@`, `#`, `*`
+- Multi-line text
+
+#### 3. Arrow Labels with Special Characters
+
+Arrow labels with special syntax can also cause issues.
+
+**Example:**
+```mermaid
+flowchart LR
+  A -->|Feature list:<br/>- item 1<br/>- item 2| B
+```
+
+**Solution:** Use quotes for arrow labels too:
+```mermaid
+flowchart LR
+  A -->|"Feature list:<br/>- item 1<br/>- item 2"| B
+```
+
+### Flowchart Best Practices
+
+1. **Use quotes for complex labels:** `["Complex (Label) with Special Chars"]`
+2. **Use `<br/>` for multi-line text:** `"Line 1<br/>Line 2<br/>Line 3"`
+3. **Avoid actual line breaks in node definitions:** Everything between `[` and `]` should be on one logical line
+4. **Test diagrams locally:** Use mermaid live editor (https://mermaid.live) to validate complex diagrams
+5. **Keep nodes focused:** Single responsibility per node makes diagrams clearer and less error-prone
 
 ### Relationship Cardinality
 
