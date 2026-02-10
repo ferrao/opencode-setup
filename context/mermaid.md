@@ -1,7 +1,6 @@
 # Mermaid Visualization Syntax for Project Plans
 
 Reference for creating project plan visualizations using Mermaid diagrams.
-Focus on Gantt charts, timelines, and burndown/burnup charts commonly used in project management.
 
 Official documentation: https://mermaid.ai/open-source/intro/index.html
 
@@ -13,13 +12,6 @@ This documentation has been updated to reflect lessons learned from creating rea
 - **✅ Every task MUST have a unique ID** for dependencies to work correctly
 - **✅ Single-developer projects require explicit sequential dependencies** using unique task IDs
 - See "Common Mistakes to Avoid" and "Project Plan Specific Considerations" for details
-
-### Burndown Charts
-- **✅ Choose appropriate granularity** - Use milestone-level for project plans, daily/weekly for sprints
-- **✅ NEVER use flat actual lines** that extend current state across all milestones/sprints
-- **✅ Actual line shows only completed progress** - don't project or forecast
-- **✅ Track progress in the unit that fits your project** - hours, tasks, or story points are all valid
-- See "Project Plan Specific Considerations" for detailed examples
 
 ---
 
@@ -319,99 +311,6 @@ timeline
 
 ---
 
-## XY Chart for Burndown/Burnup
-
-### Burndown Chart
-
-**Daily Sprint Burndown:**
-
-Remaining work over time (for individual sprints):
-
-```mermaid
-xychart-beta
-    title "Sprint Burndown"
-    x-axis ["Day 1", "Day 2", "Day 3", "Day 4", "Day 5"]
-    y-axis "Story Points" 0 --> 40
-    line [30, 25, 20, 15, 5]
-```
-
-**Daily Sprint Burndown with ideal line:**
-```mermaid
-xychart-beta
-    title "Sprint Burndown"
-    x-axis ["Day 1", "Day 2", "Day 3", "Day 4", "Day 5"]
-    y-axis "Story Points" 0 --> 30
-    line [30, 22.5, 15, 7.5, 0]
-    line [30, 24, 20, 12, 5]
-```
-
-**Project-Level Burndown (Milestone Granularity):**
-
-For project plans, track work units at milestone level. Choose your unit based on project methodology:
-
-**Hours:**
-```mermaid
-xychart-beta
-    title "Project Burndown (Hours)"
-    x-axis "Milestones" [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
-    y-axis "Remaining Hours" 0 --> 330
-    line [330, 316, 278, 246, 224, 208, 182, 160, 128, 118, 90, 72, 40, 20, 0, 0, 0]
-    line [330, 316]
-```
-
-**Tasks:**
-```mermaid
-xychart-beta
-    title "Project Burndown (Tasks)"
-    x-axis "Milestones" [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
-    y-axis "Remaining Tasks" 0 --> 65
-    line [65, 62, 55, 49, 44, 41, 36, 32, 26, 24, 18, 15, 8, 4, 0, 0, 0]
-    line [65, 62]
-```
-
-**Story Points:**
-```mermaid
-xychart-beta
-    title "Project Burndown (Story Points)"
-    x-axis "Milestones" [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
-    y-axis "Remaining Story Points" 0 --> 200
-    line [200, 190, 170, 150, 135, 125, 110, 95, 80, 72, 55, 45, 25, 12, 0, 0, 0]
-    line [200, 190]
-```
-
-Key points:
-- First line: Ideal burndown (linear from total to zero across all milestones)
-- Second line: Actual progress (only completed milestones - current state at milestone 1)
-- Choose unit that matches your planning methodology (hours, tasks, or story points)
-- X-axis uses milestone numbers (0 = project start)
-
-### Burnup Chart
-
-Completed work and scope:
-
-```mermaid
-xychart-beta
-    title "Project Burnup"
-    x-axis ["Week 1", "Week 2", "Week 3", "Week 4"]
-    y-axis "Story Points" 0 --> 100
-    line [20, 45, 70, 85]
-    line [100, 100, 110, 110]
-```
-
-### Velocity Tracking
-
-Team velocity over sprints:
-
-```mermaid
-xychart-beta
-    title "Team Velocity"
-    x-axis ["Sprint 1", "Sprint 2", "Sprint 3", "Sprint 4"]
-    y-axis "Story Points" 0 --> 60
-    line [45, 52, 48, 55]
-```
-
----
-
 ## Common Mistakes to Avoid
 
 ### Gantt Chart Mistakes
@@ -440,47 +339,6 @@ xychart-beta
 
 **3. Missing dependencies in single-developer projects**
    Without explicit `after` dependencies with unique IDs, parallel execution may be assumed, which is incorrect for one person.
-
-### Burndown Chart Mistakes
-
-**1. Flat actual lines across all milestones/sprints**
-   ❌ WRONG:
-   ```mermaid
-   xychart-beta
-       x-axis "Milestones" [0, 1, 2, 3, 4, 5]
-       y-axis "Remaining Work" 0 --> 200
-       line [200, 160, 120, 80, 40, 0]
-       line [200, 160, 160, 160, 160, 160]
-   ```
-   This makes it look like the project is stalled.
-
-   ✅ CORRECT:
-   ```mermaid
-   xychart-beta
-       x-axis "Milestones" [0, 1, 2, 3, 4, 5]
-       y-axis "Remaining Work" 0 --> 200
-       line [200, 160, 120, 80, 40, 0]
-       line [200, 160]
-   ```
-   Actual line only shows completed progress.
-
-**2. Inappropriate granularity**
-   ❌ Daily burndown for multi-month project plan (too much data)
-   ✅ Milestone-level burndown for project plans (appropriate scale)
-   ✅ Daily burndown for individual sprints (appropriate scale)
-
-**3. Mixing units or changing units mid-project**
-   ❌ Starting with tasks, then switching to hours or story points
-   ✅ Choose your unit (hours, tasks, or story points) and stick with it throughout the project
-
-**4. Missing context for actual progress**
-   Don't just show the chart. Explain:
-   - Current milestone
-   - Work completed (in your chosen unit)
-   - What's coming next
-
-**5. Forecast lines**
-   Burndown charts show historical data, not future predictions. Don't include speculative data points.
 
 ---
 
@@ -526,38 +384,6 @@ xychart-beta
     - Each task that depends on another must explicitly reference the previous task's ID
     - Use `:taskID, after previousTaskID` syntax
     - Critical for single-developer or constrained-resource projects
-
-### Burndown Chart Guidelines
-
-1. **Choose appropriate granularity**
-    - **Sprint-level**: Plot remaining work units at sprint boundaries
-   - **Milestone-level**: Plot remaining work units at each milestone (recommended for project plans)
-    - **Daily**: Too granular for high-level project plans; reserve for sprint tracking
-
-2. **Choose appropriate unit for tracking**
-    - **Hours**: Good for detailed time-tracking projects, normalizes task complexity
-    - **Tasks**: Simple and direct, works well when tasks have similar complexity
-    - **Story Points**: Best for Agile/Scrum teams using velocity-based planning
-    - Pick the unit that matches your project's planning methodology and stick with it
-    - Always document the total being tracked (e.g., "330 total hours", "65 tasks", "200 story points")
-
-3. **Define X-axis clearly**
-    - Use milestone numbers (0, 1, 2, 3...) for project-level burndowns
-    - Use days/weeks for sprint-level burndowns
-    - Clearly label the X-axis to avoid confusion
-
-4. **Avoid flat or projection lines**
-    - **Flat actual lines**: Do not draw a line that extends the current state across all milestones/sprints. This creates a misleading impression of stalled progress.
-    - **Projection lines**: Burndown charts show historical data, not forecasts. Do not project future completion.
-
-5. **Show only historical actual progress**
-    - Actual progress line should only include completed milestones
-    - Example: If currently at Milestone 1, actual line should have two points (Milestone 0 and Milestone 1)
-    - Use separate text/narration to explain current status and what's next
-
-6. **Include ideal line**
-    - Linear burndown from start to finish
-    - Helps identify if team is ahead/behind
 
 ### Timeline Guidelines
 
@@ -616,109 +442,6 @@ When creating Gantt charts for project plans (especially for single-developer or
        Development      :dev, 2024-01-01, 10d
        Sprint Complete  :ms1, after dev, 0d
    ```
-
-### Burndown Charts for Project Plans
-
-**Critical Issues: Granularity and Flat Lines**
-
-1. **Choose the right unit for your project**
-
-   Different units are appropriate for different contexts:
-
-   **Hours:** Good for detailed time-tracking, normalizes task complexity
-   ```mermaid
-   xychart-beta
-       title "Project Burndown (Hours)"
-       x-axis "Milestones" [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
-       y-axis "Remaining Hours" 0 --> 330
-       line [330, 316, 278, 246, 224, 208, 182, 160, 128, 118, 90, 72, 40, 20, 0, 0, 0]
-       line [330, 316]
-   ```
-
-   **Tasks:** Simple and direct, works well when tasks have similar complexity
-   ```mermaid
-   xychart-beta
-       title "Project Burndown (Tasks)"
-       x-axis "Milestones" [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
-       y-axis "Remaining Tasks" 0 --> 65
-       line [65, 62, 55, 49, 44, 41, 36, 32, 26, 24, 18, 15, 8, 4, 0, 0, 0]
-       line [65, 62]
-   ```
-
-   **Story Points:** Best for Agile/Scrum teams using velocity-based planning
-   ```mermaid
-   xychart-beta
-       title "Project Burndown (Story Points)"
-       x-axis "Milestones" [0, 1, 2, 3, 4, 5, 6, 7, 8]
-       y-axis "Remaining Story Points" 0 --> 200
-       line [200, 175, 150, 125, 100, 75, 50, 25, 0]
-       line [200, 175]
-   ```
-
-   Always document the total being tracked (e.g., "330 total hours", "65 tasks", "200 story points").
-
-2. **Use milestone-level granularity**
-
-   For project plans, milestone-level granularity is more appropriate than daily:
-
-   ```mermaid
-   xychart-beta
-       x-axis "Milestones" [0, 1, 2, 3, 4, 5, 6, 7, 8]
-       y-axis "Remaining Work" 0 --> 200
-       line [200, 175, 150, 125, 100, 75, 50, 25, 0]
-       line [200, 175]
-   ```
-
-   - X-axis: Milestone numbers (0 = start, 1 = after first milestone, etc.)
-   - First line: Ideal burndown (linear from total to zero)
-   - Second line: Actual progress (only completed milestones)
-
-3. **NEVER use flat actual lines**
-
-   ❌ **WRONG: Flat line extends current state across all milestones**
-   ```mermaid
-   xychart-beta
-       x-axis "Milestones" [0, 1, 2, 3, 4, 5]
-       y-axis "Remaining Hours" 0 --> 200
-       line [200, 160, 120, 80, 40, 0]
-       line [200, 160, 160, 160, 160, 160]
-   ```
-
-   This misleadingly suggests the project is stalled at current level.
-
-   ✅ **CORRECT: Actual line shows only completed progress**
-   ```mermaid
-   xychart-beta
-       x-axis "Milestones" [0, 1, 2, 3, 4, 5]
-       y-axis "Remaining Hours" 0 --> 200
-       line [200, 160, 120, 80, 40, 0]
-       line [200, 160]
-   ```
-
-   The actual line only has two points: start and current state.
-
-4. **Always provide context for actual progress**
-
-   Since actual line only shows completed milestones, use surrounding text to explain current state:
-
-   ```markdown
-   **Current Status:** Sprint 1 in progress, working on MS-002
-   - Project started (Milestone 0): 330 hours remaining
-   - Today (Milestone 1): 316 hours remaining (14 hours completed)
-   - Next: MS-002 requires 38 more hours to complete
-   ```
-
-   Or if tracking tasks:
-   ```markdown
-   **Current Status:** Sprint 1 in progress, working on MS-002
-   - Project started (Milestone 0): 65 tasks remaining
-   - Today (Milestone 1): 62 tasks remaining (3 tasks completed)
-   - Next: MS-002 requires 7 more tasks to complete
-   ```
-
-5. **Don't project future completion**
-
-   Burndown charts show historical data only. Don't include forecast lines or speculative data points.
 
 ## ERD (Entity Relationship Diagram) Syntax
 

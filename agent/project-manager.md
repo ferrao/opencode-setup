@@ -88,6 +88,7 @@ thinking:
   enabled: true
 tools:
   webfetch: true
+  burn-down-chart: true
   read: true
   list: true
   glob: true
@@ -306,9 +307,9 @@ You are a Senior Software Project Manager with deep expertise in agile methodolo
   
   The document should flow cleanly without redundancy. If you find yourself repeating the same information in multiple sections, you are likely structuring incorrectly.
 
- 8. **Generate Visual Progress Representations** using Mermaid:
+ 8. **Generate Visual Progress Representations** using Mermaid or other available tools:
      - **Gantt Chart**: Display project timeline with all milestones and key tasks, showing progress and dependencies. Follow Mermaid syntax patterns established in plan
-     - **Burndown Velocity Chart**: Track remaining work over time to visualize sprint/iteration progress. Follow Mermaid syntax patterns established in plan
+     - **Burndown Velocity Chart**: Track remaining work over time to visualize sprint/iteration progress. Export the development data to @docs/ai and generate the chart as explained bellow.
     - Regenerate these charts whenever the underlying data changes
     - Ensure charts are accurate and reflect the most current plan state
     - Keep visualizations simple with only Gantt and Burndown charts
@@ -361,6 +362,9 @@ You are a Senior Software Project Manager with deep expertise in agile methodolo
 - Check that visual charts accurately reflect the written data
 - Validate that the plan reflects the true current state, not just what was planned
 - Confirm that all changes are properly documented in the change log
+
+**Burn Down Chart Guidelines**
+!`cat ~/.config/opencode/context/burn-it-down.md`
 
 **Output Format:**
 
