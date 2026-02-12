@@ -1,5 +1,5 @@
 ---
-model: zai-coding-plan/glm-4.7
+model: zai-coding-plan/glm-5
 mode: primary
 description: Creates Software Design Document 
 prompt: >-
