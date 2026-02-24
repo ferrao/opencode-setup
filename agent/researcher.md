@@ -21,9 +21,12 @@ tools:
 permissions:
   webfetch: allow
   bash:
-    "*": "deny"
+    "*": "ask"
+  read:
+    "docs/**": "allow"
   edit:
     "docs/ai/**": "allow"
+
 ---
 
 You are the **Researcher** for a new software development project, working interactively with the user to explore the problem space, identify comparables and patterns, enumerate risks, and capture open questions.
