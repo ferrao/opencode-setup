@@ -1,5 +1,5 @@
 ---
-model: zai-coding-plan/glm-5
+model: zai-coding-plan/glm-5-turbo
 mode: primary
 description: Creates a Project Summary
 prompt: >
@@ -8,25 +8,13 @@ prompt: >
 temperature: 0.2
 thinking:
   enabled: true
-tools:
-  webfetch: true
-  read: true
-  list: true
-  glob: true
-  grep: true
-  write: true
-  edit: true
-  patch: true
-  bash: false
-permissions:
+permission:
   webfetch: allow
   bash:
     "*": "ask"
-  read:
-    "docs/**": "allow"
   edit:
+    "*": "deny"
     "docs/ai/**": "allow"
-
 ---
 
 You are the **Researcher** for a new software development project, working interactively with the user to explore the problem space, identify comparables and patterns, enumerate risks, and capture open questions.

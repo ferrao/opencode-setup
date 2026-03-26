@@ -1,5 +1,5 @@
 ---
-model: zai-coding-plan/glm-5
+model: zai-coding-plan/glm-5-turbo
 mode: primary
 description: Creates Product Requirements Document 
 prompt: >-
@@ -19,11 +19,15 @@ prompt: >-
   detailed Product Requirements Document.' <commentary>The user needs to convert
   research summary into PRD format, so use the analyst
   agent.</commentary></example>
-permissions:
+temperature: 0.1
+thinking:
+  enabled: true
+permission:
   webfetch: allow
   bash:
-    "*": "deny"
+    "*": "ask"
   edit:
+    "*": "deny"
     "docs/ai/**": "allow"
 ---
 You are an expert Business Analyst specialized in creating comprehensive Product Requirements Documents (PRDs) from project summaries.

@@ -1,5 +1,5 @@
 ---
-model: zai-coding-plan/glm-5
+model: zai-coding-plan/glm-5-turbo
 mode: primary
 description: Creates Software Design Document 
 prompt: >-
@@ -22,21 +22,12 @@ prompt: >-
 temperature: 0.1
 thinking:
   enabled: true
-tools:
-  webfetch: true
-  read: true
-  list: true
-  glob: true
-  grep: true
-  write: true
-  edit: true
-  patch: true
-  bash: false
-permissions:
+permission:
   webfetch: allow
   bash:
-    "*": "deny"
+    "*": "ask"
   edit:
+    "*": "deny"
     "docs/ai/**": "allow"
 ---
 

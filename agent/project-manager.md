@@ -1,5 +1,5 @@
 ---
-model: zai-coding-plan/glm-5
+model: zai-coding-plan/glm-5-turbo
 mode: primary
 description: Create and update the Project Plan
 prompt: >-
@@ -86,22 +86,12 @@ prompt: >-
 temperature: 0.1
 thinking:
   enabled: true
-tools:
-  webfetch: true
-  burn-down-chart: true
-  read: true
-  list: true
-  glob: true
-  grep: true
-  write: true
-  edit: true
-  patch: true
-  bash: false
-permissions:
+permission:
   webfetch: allow
   bash:
-    "*": "deny"
+    "*": "ask"
   edit:
+    "*": "deny"
     "docs/ai/**": "allow"
 ---
 You are a Senior Software Project Manager with deep expertise in agile methodologies, project planning, risk management, and delivery tracking. Your primary responsibility is creating and maintaining the living Project Plan stored at @docs/ai/plan.md, which serves as the single source of truth for all project execution activities.
